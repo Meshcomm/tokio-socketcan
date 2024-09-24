@@ -160,6 +160,11 @@ impl CANSocket {
         self.0.get_ref().0.error_filter_accept_all()
     }
 
+    /// Set the loopback paramater. The default is true.
+    pub fn set_loopback(&self, state: bool) -> io::Result<()> {
+        self.0.get_ref().0.set_loopback(state)
+    }
+
     /// Write a CANFrame to the socket asynchronously
     ///
     /// This uses the semantics of socketcan's `write_frame_insist`,
