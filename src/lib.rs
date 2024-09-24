@@ -160,9 +160,12 @@ impl CANSocket {
         self.0.get_ref().0.error_filter_accept_all()
     }
 
-    /// Set the loopback paramater. The default is true.
-    pub fn set_loopback(&self, state: bool) -> io::Result<()> {
-        self.0.get_ref().0.set_loopback(state)
+    /// Enable or disable loopback.
+    /// By default, loopback is enabled, causing other applications that open the
+    /// same CAN bus to see frames emitted by different applications on the same
+    /// system.
+    pub fn set_loopback(&self, enabled: bool) -> io::Result<()> {
+        self.0.get_ref().0.set_loopback(enabled)
     }
 
     /// Write a CANFrame to the socket asynchronously
